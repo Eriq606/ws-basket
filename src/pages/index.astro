@@ -1,5 +1,8 @@
 ---
 import Layout from '../components/layout.astro';
+const joueurs=await fetch('http://192.168.88.89:8002/players');
+const data=await joueurs.json();
+const playerdata=data.results;
 ---
 <Layout
   title="Statistiques de joueur"
@@ -32,66 +35,26 @@ import Layout from '../components/layout.astro';
                                 <th scope="col">%LF</th>
                             </tr>
                         </thead>
-                        <tbody id="rows">
+                        <tbody>
+                            {playerdata.map(player => (
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{player.nom} {player.prenom}</td>
+                                    <td>PHI</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                    <td>17</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
-                    <script>
-                        let toRows=document.getElementById("rows");
-                        let xhr=new XMLHttpRequest();
-                        xhr.addEventListener("load", function(){
-                            if(xhr.readyState==4&&xhr.status==200){
-                                let players=JSON.parse(xhr.responseText);
-                                for(let i=0;i<players.length;i++){
-                                    let tr=document.createElement("tr");
-                                    let th=document.createElement("th");
-                                    th.scope="row";
-                                    th.textContent="1";
-                                    let td1=document.createElement("td");
-                                    td1.textContent=players[i].nom+" "+players[i].prenom;
-                                    let td2=document.createElement("td");
-                                    td2.textContent="17";
-                                    let td3=document.createElement("td");
-                                    td3.textContent="17";
-                                    let td4=document.createElement("td");
-                                    td4.textContent="17";
-                                    let td5=document.createElement("td");
-                                    td5.textContent="17";
-                                    let td6=document.createElement("td");
-                                    td6.textContent="17";
-                                    let td7=document.createElement("td");
-                                    td7.textContent="17";
-                                    let td8=document.createElement("td");
-                                    td8.textContent="17";
-                                    let td9=document.createElement("td");
-                                    td9.textContent="17";
-                                    let td10=document.createElement("td");
-                                    td10.textContent="17";
-                                    let td11=document.createElement("td");
-                                    td11.textContent="17";
-                                    let td12=document.createElement("td");
-                                    td12.textContent="17";
-
-                                    tr.appendChild(th);
-                                    tr.appendChild(td1);
-                                    tr.appendChild(td2);
-                                    tr.appendChild(td3);
-                                    tr.appendChild(td4);
-                                    tr.appendChild(td5);
-                                    tr.appendChild(td5);
-                                    tr.appendChild(td6);
-                                    tr.appendChild(td7);
-                                    tr.appendChild(td8);
-                                    tr.appendChild(td9);
-                                    tr.appendChild(td10);
-                                    tr.appendChild(td11);
-                                    tr.appendChild(td12);
-                                    toRows.appendChild(tr);
-                                }
-                            }
-                        });
-                        xhr.open("GET", "http://192.168.88.89:8002/players");
-                        xhr.send();
-                    </script>
                 </div>
             </div>
         </div>
