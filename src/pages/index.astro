@@ -1,6 +1,6 @@
 ---
 import Layout from '../components/layout.astro';
-const joueurs=await fetch('https://backend-web-service-nba.onrender.com/stats/netlify');
+const joueurs=await fetch('https://ws-basket-spring.onrender.com/stats/netlify');
 const data=await joueurs.json();
 const playerdata=data.results;
 ---
