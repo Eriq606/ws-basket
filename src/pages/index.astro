@@ -2,7 +2,7 @@
 import Layout from '../components/layout.astro';
 const joueurs=await fetch('https://ws-basket-spring.onrender.com/stats/netlify');
 const data=await joueurs.json();
-console.log(data.results);
+const playerdata=await data.results;
 ---
 <Layout
   title="Statistiques de joueur"
@@ -36,6 +36,23 @@ console.log(data.results);
                             </tr>
                         </thead>
                         <tbody>
+                            {await playerdata.map(player => (
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>{player.nomJoueur} {player.prenomJoueur}</td>
+                                    <td>{player.acronymeEquipe}</td>
+                                    <td>{player.matchJouesEquipe}</td>
+                                    <td>{player.matchJouesJoueur}</td>
+                                    <td>{player.ppm}</td>
+                                    <td>{player.rpm}</td>
+                                    <td>{player.pdpm}</td>
+                                    <td>{player.mpm}</td>
+                                    <td>{player.eff}</td>
+                                    <td>{player.pourcentageFG}</td>
+                                    <td>{player.pourcentage3P}</td>
+                                    <td>{player.pourcentageLF}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>
