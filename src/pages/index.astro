@@ -36,7 +36,7 @@ const playerdata=await data.results;
                             </tr>
                         </thead>
                         <tbody>
-                            {await playerdata.map(player => (
+                            {playerdata.map(player => (
                                 <tr>
                                     <th scope="row">1</th>
                                     <td>{player.nomJoueur} {player.prenomJoueur}</td>
